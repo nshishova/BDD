@@ -49,5 +49,20 @@ public class TransferTest {
 
     }
 
+    @Test
+    void shouldShowErrorMessageIfOverdraft() {
+        int amount = TransferOverdraft(firstCardBalance);
+
+        var transferPage = dashboardPage.selectCard(secondCardInfo);
+        transferPage.makeTransfer(String.valueOf(amount), firstCardInfo);
+        transferPage.showErrorMessage();
+        var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
+        var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+
+        assertEquals(firstCardBalance, actualBalanceFirstCard);
+        assertEquals(secondCardBalance, actualBalanceSecondCard);
+
+    }
+
 
 }

@@ -47,6 +47,10 @@ public class DataHelper {
 
     public static int TransferAmount(int balance) {
         return new Random().nextInt(balance);
+
+    }
+    public static int TransferOverdraft(int balance) {
+        return new Random().nextInt(balance) + 10000;
     }
 
 
